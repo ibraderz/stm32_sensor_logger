@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -67,6 +68,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	uint32_t sayac = 0;
 
   /* USER CODE END 1 */
 
@@ -100,6 +102,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  sayac++;
+	  char tampon[64];
+	  int uzunluk = snprintf(tampon, sizeof(tampon), "sayac=%lu\r\n", sayac);
+
+	HAL_UART_Transmit(&huart2, (uint8_t*)tampon, uzunluk, 100);
+
+	HAL_Delay(1000);
+	HAL_GPIO_TogglePin (LD2_GPIO_Port, LD2_Pin);
   }
   /* USER CODE END 3 */
 }
